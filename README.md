@@ -73,15 +73,3 @@ Você contará com os seguintes dados em formato JSON:
 
 ---
 
-## 🚀 Como Rodar o Projeto
-
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
-
-# Instale as dependências (exemplo com npm)
-cd seu-repositorio
-npm install
-
-# Inicie o servidor de desenvolvimento
-npm run dev
