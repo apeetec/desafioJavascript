@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Dashoboard</title>
+</head>
+<body>
+    <main class="painel">
+        <aside class="menu">
+            <ul>
+                <li>
+                    <a href="#">Tela 1</a>
+                </li>
+            </ul>
+        </aside>
+        <article class="dashboard">
+            <section class="box-actions">
+                <p>
+                    Dashboard
+                </p>
+                <div class="line-grid">
+                    <div class="single">
+                        <div class="filters">
+                            <select id="degreeFilter">
+                                <option value="">Filtrar por Grau</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="single">
+                        <div class="filters">
+                            <select id="classFilter">
+                                <option value="">Filtrar por Classe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="single">
+                        <input type="text" name="pesquisa" id="pesquisa" placeholder="Digite o RA do aluno">
+                    </div>
+                     <div class="single">
+                        <button id="generateStudentsBtn">Gerar +300 Alunos</button>
+                    </div>
+                </div>
+            </section>
+            <section class="alunos">
+                <table id="tabelaDeAlunos">
+                    <thead>
+                        <tr>
+                            <th>RA</th>
+                            <th>Nome</th>
+                            <th>Grau</th>
+                            <th>Classe</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </article>
+    </main>
+    <footer>
+         <script src="./js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </footer>
+</body>
+</html>
