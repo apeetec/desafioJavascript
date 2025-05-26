@@ -36,6 +36,7 @@ const alunos = [
     {"id":4,"ra":852348,"name":"Nome do aluno 4","degreeId":4,"classId":2},
     {"id":5,"ra":454643,"name":"Nome do aluno 5","degreeId":6,"classId":2}
 ]
+
 // Função para buscar o grau de escolaridade
 function buscarGrau(id) {
     for (const grau of graus) {
@@ -80,6 +81,52 @@ function optionsClasse(){
     });
 }
 optionsClasse();
+// Gráficos
+let grafico;
+function atualizarGrafico() {
+      const df = filtroGraus.value;
+      const cf = filtroClasses.value;
+      const termoBusca = searchInput.value.trim().toLowerCase();
+
+      const alunosFiltrados = alunos.filter(a => 
+        (!df || a.degreeId == df) &&
+        (!cf || a.classId == cf) &&
+        (a.name.toLowerCase().includes(termoBusca) || a.ra.toString().includes(termoBusca))
+      );
+
+      const contagemPorGrau = {};
+      for (const grau of graus) contagemPorGrau[grau.name] = 0;
+
+      alunosFiltrados.forEach(a => {
+        const nomeGrau = buscarGrau(a.degreeId);
+        contagemPorGrau[nomeGrau]++;
+      });
+
+      const labels = Object.keys(contagemPorGrau);
+      const data = Object.values(contagemPorGrau);
+
+      const ctx = document.getElementById('graficoDistribuicao').getContext('2d');
+      if (grafico) grafico.destroy();
+      grafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Alunos por Grau de Escolaridade',
+            data: data,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true, precision: 0 }
+          }
+        }
+      });
+    }
 // Corpo da tabela de alunos
 function tabelaAlunos(){
     const df = degreeFilter.value;
@@ -113,6 +160,7 @@ function tabelaAlunos(){
         +'<td><button class="btn" onclick="deleteStudent(' + aluno.id + ')">Remover</button></td>';
         corpoTabela.appendChild(tr);
     });
+    atualizarGrafico();
 }
 tabelaAlunos();
 // Atualizar o nome 
@@ -145,7 +193,28 @@ window.deleteStudent = function(id) {
     // updateChart(); 
   }
 };
+// Gerar alunos
+function generateStudents(count = 300) {
+  const novosAlunos = [];
+  for (let i = 0; i < count; i++) {
+    const grau = graus[Math.floor(Math.random() * graus.length)];
+    const classId = Math.floor(Math.random() * classes.length) + 1;
+    novosAlunos.push({
+      id: alunos.length + i + 1,
+      ra: Math.floor(100000 + Math.random() * 900000),
+      name: `Aluno Gerado ${alunos.length + i + 1}`,
+      degreeId: grau.id,
+      classId: classId
+    });
+  }
+  alunos.push(...novosAlunos); // Adiciona à lista original
+  tabelaAlunos(); // Atualiza a tabela
+//   updateChart();  // Atualiza o gráfico dinâmico
+}
 
 degreeFilter.addEventListener("change", tabelaAlunos);
 classFilter.addEventListener("change", tabelaAlunos);
 searchInput.addEventListener("input", tabelaAlunos);
+gerarAluno.addEventListener("click", () => generateStudents());
+
+
