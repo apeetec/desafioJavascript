@@ -68,10 +68,12 @@ function optionsDeGrau(){
 optionsDeGrau();
 // Função para exibir as Classes
 function optionsClasse(){
+    var cont = 0;
     classes.forEach(classe => {
+        cont++;
     //    console.log(classe.name); 
        const options = document.createElement("option");
-       options.value = classe.id;
+       options.value = cont;
        options.innerText = classe.name;
        filtroClasses.append(options);
     });
@@ -79,7 +81,12 @@ function optionsClasse(){
 optionsClasse();
 // Corpo da tabela de alunos
 function tabelaAlunos(){
-    alunos.forEach(aluno => {
+    const df = degreeFilter.value;
+    const cf = classFilter.value;
+    corpoTabela.innerHTML = "";
+    alunos
+    .filter(a => (!df || a.degreeId == df) && (!cf || a.classId == cf))
+    .forEach(aluno => {
         const tr = document.createElement("tr");
         const td = document.createElement("td");
         corpoTabela.append(tr);
@@ -95,7 +102,7 @@ function tabelaAlunos(){
         +'</select>'
         +'</td>'
         +'<td><button class="btn" onclick="deleteStudent(' + aluno.id + ')">Remover</button></td>';
-
+        corpoTabela.appendChild(tr);
     });
 }
 tabelaAlunos();
@@ -130,3 +137,5 @@ window.deleteStudent = function(id) {
   }
 };
 
+degreeFilter.addEventListener("change", tabelaAlunos);
+classFilter.addEventListener("change", tabelaAlunos);
