@@ -1,5 +1,6 @@
 const filtroGraus = document.getElementById("degreeFilter");
 const filtroClasses = document.getElementById("classFilter");
+const searchInput = document.getElementById("pesquisa");
 const corpoTabela = document.querySelector("#tabelaDeAlunos tbody");
 const gerarAluno = document.getElementById("generateStudentsBtn");
 // Objeto de grau de escolaridade
@@ -83,9 +84,17 @@ optionsClasse();
 function tabelaAlunos(){
     const df = degreeFilter.value;
     const cf = classFilter.value;
+    const termoBusca = searchInput.value.trim().toLowerCase();
     corpoTabela.innerHTML = "";
     alunos
-    .filter(a => (!df || a.degreeId == df) && (!cf || a.classId == cf))
+    .filter(a => 
+        (!df || a.degreeId == df) &&
+        (!cf || a.classId == cf) &&
+        (
+          a.name.toLowerCase().includes(termoBusca) || 
+          a.ra.toString().includes(termoBusca)
+        )
+    )
     .forEach(aluno => {
         const tr = document.createElement("tr");
         const td = document.createElement("td");
@@ -139,3 +148,4 @@ window.deleteStudent = function(id) {
 
 degreeFilter.addEventListener("change", tabelaAlunos);
 classFilter.addEventListener("change", tabelaAlunos);
+searchInput.addEventListener("input", tabelaAlunos);
