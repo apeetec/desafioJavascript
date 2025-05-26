@@ -94,7 +94,8 @@ function tabelaAlunos(){
         +buscarClasse(aluno.classId)
         +'</select>'
         +'</td>'
-        +'<td><button class="btn">Remover</button></td>';
+        +'<td><button class="btn" onclick="deleteStudent(' + aluno.id + ')">Remover</button></td>';
+
     });
 }
 tabelaAlunos();
@@ -110,19 +111,22 @@ tabelaAlunos();
     };
 // Atualizar a classe
 window.updateClass = function(id, value) {
-  const aluno = alunos.find(s => s.id === id);
-  if (aluno) {
-    aluno.classId = parseInt(value);
-    tabelaAlunos();
-  }
-};
-
-window.updateClass = function(id, value) {
   const index = alunos.findIndex(a => a.id === id);
   if (index !== -1) {
     alunos[index].classId = parseInt(value);
     corpoTabela.innerHTML = "";
     tabelaAlunos();
+  }
+};
+// Deletar aluno
+window.deleteStudent = function(id) {
+  const index = alunos.findIndex(a => a.id === id);
+  if (index !== -1) {
+    alunos.splice(index, 1);
+    corpoTabela.innerHTML = "";
+    tabelaAlunos();
+    // Se houver gráfico, atualize aqui também (opcional)
+    // updateChart(); 
   }
 };
 
