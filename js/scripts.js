@@ -85,16 +85,44 @@ function tabelaAlunos(){
         corpoTabela.append(tr);
         tr.innerHTML ='<td>'
         +aluno.ra+'</td>'+
-        '<td>'+aluno.name+
-        '</td>'+
+        '<td class="campoAluno" contenteditable="true" onblur="updateName(' + aluno.id + ', this.innerText)">' + aluno.name + '</td>'+
         '<td>'
         +buscarGrau(aluno.degreeId)
         +'</td>'
         +'<td>'
-        +'<select>'
+        +'<select onchange="updateClass(' + aluno.id + ', this.value)">'
         +buscarClasse(aluno.classId)
         +'</select>'
-        +'</td>';
+        +'</td>'
+        +'<td><button class="btn">Remover</button></td>';
     });
 }
 tabelaAlunos();
+// Atualizar o nome 
+    window.updateName = function(id, value) {
+    const aluno = alunos.find(a => a.id === id);
+    console.log(aluno);
+    if (aluno) {
+        aluno.name = value.trim();
+        corpoTabela.innerHTML = ""; // limpa antes de renderizar
+        tabelaAlunos(); // atualiza a tabela
+    }
+    };
+// Atualizar a classe
+window.updateClass = function(id, value) {
+  const aluno = alunos.find(s => s.id === id);
+  if (aluno) {
+    aluno.classId = parseInt(value);
+    tabelaAlunos();
+  }
+};
+
+window.updateClass = function(id, value) {
+  const index = alunos.findIndex(a => a.id === id);
+  if (index !== -1) {
+    alunos[index].classId = parseInt(value);
+    corpoTabela.innerHTML = "";
+    tabelaAlunos();
+  }
+};
+
