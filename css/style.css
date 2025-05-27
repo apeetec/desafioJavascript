@@ -1,4 +1,5 @@
-body{background-image: linear-gradient(to right top, #7303c0, #9803bf, #b812be, #d325bd, #ec38bc);background-position: center;background-size: cover;background-repeat: no-repeat;font-family: "Raleway", sans-serif;}
+body{background-image: linear-gradient(to right top, #7303c0, #9803bf, #b812be, #d325bd, #ec38bc);background-position: center;background-size: cover;background-repeat: no-repeat;font-family: "Raleway", sans-serif;display: flex
+;min-height: 100vh;flex-direction: column;background-color: #e2e8e8;}
 .btn{display: inline-block;margin-right: 5px;border: none;padding: 10px;}
 .btn:hover{cursor: pointer;}
 /* Tela 1 */
