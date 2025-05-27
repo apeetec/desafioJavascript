@@ -1,9 +1,10 @@
-body{background-image: linear-gradient(to right top, #7303c0, #9803bf, #b812be, #d325bd, #ec38bc);font-family: "Raleway", sans-serif;background-position: center;background-size: cover;background-repeat: no-repeat;}
+body{background-image: linear-gradient(to right top, #7303c0, #9803bf, #b812be, #d325bd, #ec38bc);background-position: center;background-size: cover;background-repeat: no-repeat;font-family: "Raleway", sans-serif;}
 .btn{display: inline-block;margin-right: 5px;border: none;padding: 10px;}
 .btn:hover{cursor: pointer;}
 /* Tela 1 */
-.painel{display: grid;grid-template-columns: auto 1fr;grid-gap: 0 40px;background: rgba(255, 255, 255, 0.45);padding: 2rem;box-sizing: border-box;width: 100%;border-radius: 5px;}
-.menu{padding: 2rem;}
+.painel{display: grid;grid-template-columns: 250px 1fr;grid-gap: 0 40px;background: rgba(255, 255, 255, 0.45);padding: 2rem;box-sizing: border-box;width: 100%;border-radius: 5px;}
+.menu{padding: 0 2rem;}
+.menu p{margin: 0;}
 .menu ul{padding: 0;list-style: none;}
 .dashboard{display: grid;grid-template-rows: auto 260px 1fr;grid-gap: 40px 0;}
 canvas{height: 450px!important;width: 100%!important;}
@@ -17,3 +18,8 @@ canvas{height: 450px!important;width: 100%!important;}
 .alunos table{width: 100%;}
 .alunos table th{text-align: left;}
 .campoAluno.active{border: red;}
+.btAcessar{background-color: #03c084;display: block;padding: 10px;color: #fff;text-decoration: none;border-radius: 10px;width: 100%;text-align: center;box-sizing: border-box;}
+@media screen and (max-width:992px) {
+.painel{grid-template-columns: 1fr;}
+.line-grid {grid-template-columns: repeat(2, 1fr);grid-gap: 10px 10px;}
+}

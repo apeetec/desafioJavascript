@@ -114,13 +114,14 @@ function atualizarGrafico() {
           datasets: [{
             label: 'Alunos por Grau de Escolaridade',
             data: data,
-            backgroundColor: 'rgba(54, 162, 235, 0.7)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(115, 3, 192, 1)',
+            borderColor: 'rgba(115, 3, 192, 1)',
             borderWidth: 1
           }]
         },
         options: {
           responsive: true,
+        maintainAspectRatio: false, 
           scales: {
             y: { beginAtZero: true, precision: 0 }
           }
@@ -164,15 +165,15 @@ function tabelaAlunos(){
 }
 tabelaAlunos();
 // Atualizar o nome 
-    window.updateName = function(id, value) {
-    const aluno = alunos.find(a => a.id === id);
-    console.log(aluno);
-    if (aluno) {
-        aluno.name = value.trim();
-        corpoTabela.innerHTML = ""; // limpa antes de renderizar
-        tabelaAlunos(); // atualiza a tabela
-    }
-    };
+window.updateName = function(id, value) {
+  const aluno = alunos.find(a => a.id === id);
+  console.log(aluno);
+  if (aluno) {
+      aluno.name = value.trim();
+      corpoTabela.innerHTML = ""; // limpa antes de renderizar
+      tabelaAlunos(); // atualiza a tabela
+  }
+};
 // Atualizar a classe
 window.updateClass = function(id, value) {
   const index = alunos.findIndex(a => a.id === id);
