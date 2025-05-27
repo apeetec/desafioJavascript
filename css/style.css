@@ -9,6 +9,9 @@ body{background-image: linear-gradient(to right top, #7303c0, #9803bf, #b812be, 
 .menu ul{padding: 0;list-style: none;}
 .dashboard{display: grid;grid-template-rows: auto 260px 1fr;grid-gap: 40px 0;}
 canvas{height: 450px!important;width: 100%!important;}
+table {width: 100%;border-collapse: collapse;margin-bottom: 20px;}
+th, td {border: 1px solid #ccc;padding: 8px;text-align: left;}
+th {background-color: #f0f0f0;}
 .box-actions p{color: #633a78;font-size: 1.5rem;font-weight: 700;margin: 0 0 1rem 0;}
 .line-grid{display: grid;grid-template-columns: repeat(4, 1fr);grid-gap: 0 10px;}
 .single select,.single input,.single button{width: 100%;height: 3rem;box-sizing: border-box;padding: 10px;border-radius: 5px;}
