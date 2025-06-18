@@ -72,4 +72,5 @@ Você contará com os seguintes dados em formato JSON:
 - `relationships.json`
 
 ---
-
+## 📁 Preview
+<a href="https://apeetec.github.io/desafioJavascript/" target="!_blank">https://apeetec.github.io/desafioJavascript/</a>
